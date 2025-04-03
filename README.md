@@ -5,6 +5,8 @@
 </p>
 
 > **Blockchain-native content verification for the digital age**
+>
+> **Fighting deep fakes, disinformation, and misinformation through verifiable content**
 
 ## Overview
 

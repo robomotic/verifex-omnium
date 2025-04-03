@@ -55,7 +55,147 @@ The Polygon blockchain was selected for its:
 
 ## Getting Started
 
-*Documentation coming soon*
+This section explains how to set up a development environment for Verifex Omnium using pyenv, Poetry, and uv.
+
+### Prerequisites
+
+- Git
+- Python 3.10+
+- pyenv (for Python version management)
+- pipx (for installing Poetry and uv)
+
+### Development Environment Setup
+
+#### 1. Install pyenv
+
+If you don't have pyenv installed, you can install it by following the [official installation guide](https://github.com/pyenv/pyenv#installation).
+
+Quick install:
+
+```bash
+curl https://pyenv.run | bash
+```
+
+Add to your shell configuration:
+
+```bash
+# For bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+```
+
+#### 2. Install the required Python version
+
+```bash
+pyenv install 3.10.12
+cd /path/to/verifex-omnium
+pyenv local 3.10.12  # This creates/updates .python-version file
+```
+
+#### 3. Install pipx (if not installed)
+
+```bash
+python -m pip install --user pipx
+python -m pipx ensurepath
+```
+
+#### 4. Install Poetry and uv with pipx
+
+```bash
+pipx install poetry
+pipx install uv
+```
+
+#### 5. Configure Poetry to use uv
+
+```bash
+poetry config installer.modern-installation true
+```
+
+#### 6. Set up the project
+
+Clone the repository (if you haven't):
+
+```bash
+git clone https://github.com/your-username/verifex-omnium.git
+cd verifex-omnium
+```
+
+#### 7. Install dependencies
+
+```bash
+poetry install
+```
+
+This will:
+- Create a virtual environment
+- Install all dependencies specified in pyproject.toml
+- Install the project in development mode
+
+### Development Workflow
+
+#### Activate the virtual environment
+
+```bash
+poetry shell
+```
+
+#### Run the CLI
+
+```bash
+python -m verifex_omnium.cli --help
+```
+
+#### Running tests
+
+```bash
+poetry run pytest
+```
+
+#### Code formatting
+
+```bash
+poetry run black .
+poetry run isort .
+```
+
+#### Linting
+
+```bash
+poetry run ruff .
+poetry run mypy .
+```
+
+### Adding new dependencies
+
+#### Runtime dependencies
+
+```bash
+poetry add package-name
+```
+
+#### Development dependencies
+
+```bash
+poetry add --group dev package-name
+```
+
+### Benefits of this Setup
+
+- **pyenv**: Manages Python versions, ensuring consistent environment across developers
+- **Poetry**: Handles dependencies, virtual environments, and packaging
+- **uv**: Accelerates package installations with faster dependency resolution
+- **Combined**: All three tools work together to create a robust, reproducible development environment
+
+### Troubleshooting
+
+If you encounter any issues, please check:
+
+1. That your Python version matches 3.10.12 (`python --version`)
+2. That Poetry is using the correct Python interpreter (`poetry env info`)
+3. For dependency issues, try `poetry update` to resolve them
 
 ## Contributing
 
